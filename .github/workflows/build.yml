@@ -27,3 +27,35 @@ jobs:
 
       - name: Build app
         run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-build
+          path: dist
+          if-no-files-found: error
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        environment: [uat, prod]
+    environment:
+      name: ${{ matrix.environment }}
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-build
+          path: dist
+
+      - name: Deploy to ${{ matrix.environment }}
+        run: |
+          echo "Deploying build artifact to ${{ matrix.environment }} environment"
+          # Add actual deployment command here.
+          # Example:
+          # npm run deploy:${{ matrix.environment }}
