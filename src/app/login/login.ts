@@ -9,18 +9,18 @@ import { Router } from '@angular/router';
   styleUrl: './login.css',
 })
 export class Login {
-  email = '';
+  username = '';
   password = '';
   showErrorModal = false;
 
-  private readonly validEmail = 'admin@example.com';
-  private readonly validPassword = 'admin123';
+  private readonly validUsername = 'admin';
+  private readonly validPassword = 'abc123';
 
   constructor(private readonly router: Router) {}
 
   onLogin(): void {
     const isValidUser =
-      this.email.trim().toLowerCase() === this.validEmail &&
+      this.username.trim() === this.validUsername &&
       this.password === this.validPassword;
 
     if (isValidUser) {

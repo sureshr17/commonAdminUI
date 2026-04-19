@@ -3,16 +3,17 @@
     <div class="card-body p-4">
       <h1 class="h4 mb-3 text-center">Login</h1>
       <p class="small text-muted mb-3 text-center">
-        Use <strong>admin@example.com</strong> / <strong>admin123</strong>
+        Use <strong>admin</strong> / <strong>abc123</strong>
       </p>
       <form class="d-grid gap-3" (ngSubmit)="onLogin()">
         <input
-          type="email"
+          type="text"
           class="form-control"
-          placeholder="Email"
-          [(ngModel)]="email"
-          name="email"
+          placeholder="Username"
+          [(ngModel)]="username"
+          name="username"
           required
+          autocomplete="username"
         />
         <input
           type="password"
@@ -37,7 +38,7 @@
           <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
         </div>
         <div class="modal-body">
-          <p class="mb-0">Invalid email or password. Please try again.</p>
+          <p class="mb-0">Invalid username or password. Please try again.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
