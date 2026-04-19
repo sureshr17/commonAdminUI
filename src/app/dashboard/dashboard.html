@@ -10,10 +10,10 @@
           <button routerLink="/login" type="button" class="btn btn-outline-danger">Logout</button>
         </div>
 
-        @if (loading) {
+        @if (loading()) {
           <div class="alert alert-info mb-0">Loading students...</div>
-        } @else if (errorMessage) {
-          <div class="alert alert-danger mb-0">{{ errorMessage }}</div>
+        } @else if (errorMessage()) {
+          <div class="alert alert-danger mb-0">{{ errorMessage() }}</div>
         } @else {
           <div class="table-responsive">
             <table class="table table-striped table-bordered align-middle mb-0">
@@ -27,7 +27,7 @@
                 </tr>
               </thead>
               <tbody>
-                @for (student of students; track student.id) {
+                @for (student of students(); track student.id) {
                   <tr>
                     <td>{{ student.id }}</td>
                     <td>{{ student.name }}</td>

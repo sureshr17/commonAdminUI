@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Student, StudentService } from '../services/student.service';
 
@@ -9,21 +9,22 @@ import { Student, StudentService } from '../services/student.service';
   styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit {
-  students: Student[] = [];
-  loading = true;
-  errorMessage = '';
+  /** Signals keep the view in sync when HttpClient completes (zoneless app has no Zone.js). */
+  readonly students = signal<Student[]>([]);
+  readonly loading = signal(true);
+  readonly errorMessage = signal('');
 
   constructor(private readonly studentService: StudentService) {}
 
   ngOnInit(): void {
     this.studentService.getStudents().subscribe({
       next: (data) => {
-        this.students = data;
-        this.loading = false;
+        this.students.set(data);
+        this.loading.set(false);
       },
       error: () => {
-        this.errorMessage = 'Unable to fetch student data. Please try again later.';
-        this.loading = false;
+        this.errorMessage.set('Unable to fetch student data. Please try again later.');
+        this.loading.set(false);
       },
     });
   }
