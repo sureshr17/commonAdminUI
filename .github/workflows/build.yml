@@ -25,9 +25,9 @@ jobs:
       - name: Print repo variables and secrets (masked)
         run: |
           echo "Repository variables:"
-          echo '${{ toJSON(vars) }}'
+          echo '${{ toJSON(vars) }} repository variables'
           echo "Repository secrets (values are masked by GitHub):"
-          echo '${{ toJSON(secrets) }}'
+          echo '${{ toJSON(secrets) }} repository secrets'
 
       - name: Build app
         run: npm run build
