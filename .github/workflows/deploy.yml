@@ -6,6 +6,10 @@ on:
       - "main"
     types: [closed]
 
+concurrency:
+  group: deploy-${{ github.workflow }}
+  cancel-in-progress: false 
+
 jobs:
   build:
     runs-on: ubuntu-latest
