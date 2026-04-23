@@ -60,10 +60,6 @@ jobs:
           github-token: ${{ github.token }}
           run-id: ${{ github.run_id }}
           repository: ${{ github.repository }}
-          run: echo "repository: ${{ github.repository }}"
-          run: echo "owner: ${{ github.repository_owner }}"
-          run: echo "github-token: ${{ github.token }}"
-          run: echo "run-id: ${{ github.run_id }}"
 
       - name: Deploy to ${{ matrix.environment }}
         run: |
