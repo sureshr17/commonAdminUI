@@ -55,6 +55,10 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
+          github-token: ${{ github.token }}
+          run-id: ${{ github.run_id }}
+          repository: ${{ github.repository }}
+          owner: ${{ github.repository_owner }}
           name: app-build
           path: dist
 
