@@ -1,16 +1,11 @@
-name: Build App
+name: Build and Deploy Common Admin UI App
 
 on:
   pull_request:
     branches:
-      - "**"
-    types: [created, synchronize, reopened]
-  pull_request_target:
-    branches:
       - "main"
     types: [closed]
-    after-merge: true
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
