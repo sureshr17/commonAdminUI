@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - "main"  
-    types: [closed]    
   pull_request:
     branches:
-      - "main"   
+      - "main"
+    types: [closed]
 
 jobs:
   build:
@@ -45,8 +45,7 @@ jobs:
 
   deploy:
     needs: build
-    on-merge:
-    if: github.event.pull_request.merged == true
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
