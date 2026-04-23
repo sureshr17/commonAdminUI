@@ -56,7 +56,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: app-build
-          path: deploy
+          path: common-admin-ui
           github-token: ${{ github.token }}
           run-id: ${{ github.run_id }}
           repository: ${{ github.repository }}
@@ -64,4 +64,6 @@ jobs:
       - name: Deploy to ${{ matrix.environment }}
         run: |
           echo "Deploying build artifact to ${{ matrix.environment }} environment"
-          npm run deploy:${{ matrix.environment }}
+          # Add actual deployment command here.
+          # Example:
+          # npm run deploy:${{ matrix.environment }}
