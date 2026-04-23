@@ -1,6 +1,9 @@
 name: Build App
 
 on:
+  push:
+    branches:
+      - "main"  
   pull_request:
     branches:
       - "main"
@@ -25,9 +28,9 @@ jobs:
       - name: Print repo variables and secrets (masked)
         run: |
           echo "Repository variables:"
-          echo '${{ toJSON(vars) }} repository variables'
+          echo '${{ toJSON(vars) }}'
           echo "Repository secrets (values are masked by GitHub):"
-          echo '${{ toJSON(secrets) }} repository secrets'
+          echo '${{ toJSON(secrets) }}'
 
       - name: Build app
         run: npm run build
