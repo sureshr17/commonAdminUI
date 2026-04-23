@@ -7,7 +7,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  validate:
+  pr-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +25,7 @@ jobs:
 
       - name: Build app
         run: npm run build
-        
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
