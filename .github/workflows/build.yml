@@ -3,9 +3,14 @@ name: Build App
 on:
   pull_request:
     branches:
+      - "**"
+    types: [created, synchronize, reopened]
+  pull_request_target:
+    branches:
       - "main"
     types: [closed]
-
+    after-merge: true
+    
 jobs:
   build:
     runs-on: ubuntu-latest
