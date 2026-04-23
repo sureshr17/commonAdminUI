@@ -1,10 +1,14 @@
-name: Build and Deploy Common Admin UI App
+name: Build and Deploy Common Admin UI 
 
 on:
   pull_request:
     branches:
       - "main"
     types: [closed]
+
+concurrency:
+  group: deploy-${{ github.workflow }}
+  cancel-in-progress: false 
 
 jobs:
   build:

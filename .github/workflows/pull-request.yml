@@ -6,6 +6,10 @@ on:
       - "**"
     types: [opened, synchronize, reopened]
 
+concurrency:
+  group: pr-build-${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   pr-build:
     runs-on: ubuntu-latest
